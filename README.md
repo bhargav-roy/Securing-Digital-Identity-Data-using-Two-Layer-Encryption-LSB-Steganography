@@ -15,6 +15,8 @@ Encryption process was defined as:
 
 
 Decryption process was defined as:
+
+
 ![Decryption](https://github.com/bhargav-roy/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/assets/79373109/40e52999-7709-42c8-8102-ef6fa57ff581)
 
 ## Results

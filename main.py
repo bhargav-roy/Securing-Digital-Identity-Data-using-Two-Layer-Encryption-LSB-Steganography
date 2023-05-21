@@ -1,3 +1,6 @@
+from LSB_HFM import encode_hfm, decode_hfm
+from hoffmanencoding import Node, Calculate_Codes, Calculate_Probability, Output_Encoded, Total_Gain, Huffman_Encoding, Huffman_Decoding
+from LSB_ECC import Encode, Decode
 from ECC import EllipticCurveCryptography, Point
 from math import inf
 import random
@@ -6,9 +9,6 @@ import cv2
 import numpy as np
 from PSNR import PSNR
 np.set_printoptions(threshold=sys.maxsize)
-from LSB_ECC import Encode,Decode
-from hoffmanencoding import Node, Calculate_Codes, Calculate_Probability, Output_Encoded, Total_Gain, Huffman_Encoding,Huffman_Decoding
-from LSB_HFM import encode_hfm,decode_hfm
 
 
 # Alphabets used for storing the data
@@ -30,7 +30,7 @@ Points.append(Point(inf, inf))
 # Defining Public Keys
 G = Point(2, 4)  # Generator Point
 H = ecc.double_and_add(5, G)  # d=5 is the private key
-    # print(H)
+# print(H)
 # Creating dictionary for assigning points to alphabets
 Assign = {}
 for i in range(len(Alphabets)):
@@ -82,49 +82,59 @@ Cipher_Text_2 = ecc_encoding(Plain_Text_2, G, H)
 Cipher_Text_3 = ecc_encoding(Plain_Text_3, G, H)
 
 # Encrypting Cipher Text in Lena image without HFM encoding
-Encode('E:/Dissertation/Data/Lena.png',Cipher_Text_1,'E:/Dissertation/Data/LSB_ECC/Encrypt1.png')
-Encode('E:/Dissertation/Data/Lena.png',Cipher_Text_2,'E:/Dissertation/Data/LSB_ECC/Encrypt2.png')
-Encode('E:/Dissertation/Data/Lena.png',Cipher_Text_3,'E:/Dissertation/Data/LSB_ECC/Encrypt3.png')
+Encode('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/Lena.png', Cipher_Text_1,
+       'E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/LSB_ECC/Encrypt1.png')
+Encode('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/Lena.png', Cipher_Text_2,
+       'E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/LSB_ECC/Encrypt2.png')
+Encode('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/Lena.png', Cipher_Text_3,
+       'E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/LSB_ECC/Encrypt3.png')
 
 
 # Calculating PSNR without HFM
-print(PSNR(cv2.imread('E:/Dissertation/Data/Lena.png'),cv2.imread('E:/Dissertation/Data/LSB_ECC/Encrypt1.png')))
-print(PSNR(cv2.imread('E:/Dissertation/Data/Lena.png'),cv2.imread('E:/Dissertation/Data/LSB_ECC/Encrypt2.png')))
-print(PSNR(cv2.imread('E:/Dissertation/Data/Lena.png'),cv2.imread('E:/Dissertation/Data/LSB_ECC/Encrypt3.png')))
+print(PSNR(cv2.imread('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/Lena.png'),
+      cv2.imread('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/LSB_ECC/Encrypt1.png')))
+print(PSNR(cv2.imread('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/Lena.png'),
+      cv2.imread('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/LSB_ECC/Encrypt2.png')))
+print(PSNR(cv2.imread('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/Lena.png'),
+      cv2.imread('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/LSB_ECC/Encrypt3.png')))
 
 # Decoding & Checking with Cipher Text
-Decode('E:/Dissertation/Data/LSB_ECC/Encrypt1.png')
+Decode('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/LSB_ECC/Encrypt1.png')
 print(Cipher_Text_1)
-Decode('E:/Dissertation/Data/LSB_ECC/Encrypt2.png')
+Decode('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/LSB_ECC/Encrypt2.png')
 print(Cipher_Text_2)
-Decode('E:/Dissertation/Data/LSB_ECC/Encrypt3.png')
+Decode('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/LSB_ECC/Encrypt3.png')
 print(Cipher_Text_3)
 
 # Encoding Cipher_text through Huffman encoding
 print("Encoding Details For Cipher_Text_1:")
-encoding1,tree1=Huffman_Encoding(Cipher_Text_1)
+encoding1, tree1 = Huffman_Encoding(Cipher_Text_1)
 print("Encoding Details For Cipher_Text_2:")
-encoding2,tree2=Huffman_Encoding(Cipher_Text_2)
+encoding2, tree2 = Huffman_Encoding(Cipher_Text_2)
 print("Encoding Details For Cipher_Text_3:")
-encoding3,tree3=Huffman_Encoding(Cipher_Text_3)
+encoding3, tree3 = Huffman_Encoding(Cipher_Text_3)
 
 # Ecrypting the Encoded code using LSB
-encode_hfm('E:/Dissertation/Data/Lena.png',encoding1,'E:/Dissertation/Data/LSB_HFM/Encrypt1.png')
-encode_hfm('E:/Dissertation/Data/Lena.png',encoding2,'E:/Dissertation/Data/LSB_HFM/Encrypt2.png')
-encode_hfm('E:/Dissertation/Data/Lena.png',encoding3,'E:/Dissertation/Data/LSB_HFM/Encrypt3.png')
+encode_hfm('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/Lena.png', encoding1,
+           'E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/LSB_HFM/Encrypt1.png')
+encode_hfm('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/Lena.png', encoding2,
+           'E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/LSB_HFM/Encrypt2.png')
+encode_hfm('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/Lena.png', encoding3,
+           'E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/LSB_HFM/Encrypt3.png')
 
 # calculating PSNR with HFM
-print(PSNR(cv2.imread('E:/Dissertation/Data/Lena.png'),cv2.imread('E:/Dissertation/Data/LSB_HFM/Encrypt1.png')))
-print(PSNR(cv2.imread('E:/Dissertation/Data/Lena.png'),cv2.imread('E:/Dissertation/Data/LSB_HFM/Encrypt2.png')))
-print(PSNR(cv2.imread('E:/Dissertation/Data/Lena.png'),cv2.imread('E:/Dissertation/Data/LSB_HFM/Encrypt3.png')))
+print(PSNR(cv2.imread('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/Lena.png'),
+      cv2.imread('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/LSB_HFM/Encrypt1.png')))
+print(PSNR(cv2.imread('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/Lena.png'),
+      cv2.imread('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/LSB_HFM/Encrypt2.png')))
+print(PSNR(cv2.imread('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/Lena.png'),
+      cv2.imread('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/LSB_HFM/Encrypt3.png')))
 
 
 # Decoding Encoded Text & checking
-decode_hfm('E:/Dissertation/Data/LSB_HFM/Encrypt1.png',len(encoding1))
+decode_hfm('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/LSB_HFM/Encrypt1.png', len(encoding1))
 print(encoding1)
-decode_hfm('E:/Dissertation/Data/LSB_HFM/Encrypt2.png',len(encoding2))
+decode_hfm('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/LSB_HFM/Encrypt2.png', len(encoding2))
 print(encoding2)
-decode_hfm('E:/Dissertation/Data/LSB_HFM/Encrypt3.png',len(encoding3))
+decode_hfm('E:/Github/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/Data/LSB_HFM/Encrypt3.png', len(encoding3))
 print(encoding3)
-
-

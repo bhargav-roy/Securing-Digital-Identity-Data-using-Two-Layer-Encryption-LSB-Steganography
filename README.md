@@ -11,13 +11,13 @@ In the chapter mentioned above, they have encrypted the data using ElGamalcrypto
 
 Encryption process was defined as:
 
+![Encryption](https://github.com/bhargav-roy/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/assets/79373109/a1361b46-9436-4e22-aeee-5fba9870cda9)
 
 
 Decryption process was defined as:
-
-
+![Decryption](https://github.com/bhargav-roy/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/assets/79373109/40e52999-7709-42c8-8102-ef6fa57ff581)
 
 ## Results
 
 We have obtained a significant decrease in the size of cipher code. There was an improvement in the PSNR value obtained between the original and encrypted image. Also, we can see the negligible distortion between the original and encrypted image.
-
+![Result](https://github.com/bhargav-roy/Securing-Digital-Identity-Data-using-Two-Layer-Encryption-LSB-Steganography/assets/79373109/bf26e3c3-7681-4b6e-834a-cd37eb285b66)
